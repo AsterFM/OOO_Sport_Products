@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="13fcfe740d0e4575916893448a90f611" Name="Diagram1" ZoomLevel="83">
+        <EntityTypeShape EntityType="NSSportProducts.Cutegory" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NSSportProducts.Manufacturer" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NSSportProducts.Order" Width="1.5" PointX="3" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NSSportProducts.OrderProduct" Width="1.5" PointX="5.25" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NSSportProducts.Point" Width="1.5" PointX="0.75" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NSSportProducts.Product" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="NSSportProducts.Provider" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NSSportProducts.Role" Width="1.5" PointX="5.875" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NSSportProducts.Status" Width="1.5" PointX="0.75" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NSSportProducts.sysdiagram" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NSSportProducts.Unit" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NSSportProducts.User" Width="1.5" PointX="8" PointY="5.875" IsExpanded="true" />
+        <AssociationConnector Association="NSSportProducts.FK_Product_Cutegory" ManuallyRouted="false" />
+        <AssociationConnector Association="NSSportProducts.FK_Product_Manufacturer" ManuallyRouted="false" />
+        <AssociationConnector Association="NSSportProducts.FK_Order_Point" ManuallyRouted="false" />
+        <AssociationConnector Association="NSSportProducts.FK_Order_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="NSSportProducts.FK_OrderProduct_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="NSSportProducts.FK_OrderProduct_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="NSSportProducts.FK_Product_Provider" ManuallyRouted="false" />
+        <AssociationConnector Association="NSSportProducts.FK_Product_Unit" ManuallyRouted="false" />
+        <AssociationConnector Association="NSSportProducts.FK_Users_Role" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -14,3 +14,8 @@ C:\Users\User\Desktop\Demo\OOO_Sport_Products\OOO_Sport_Products\obj\Debug\OOO_S
 C:\Users\User\Desktop\Demo\OOO_Sport_Products\OOO_Sport_Products\obj\Debug\OOO_Sport_Products.csproj.CoreCompileInputs.cache
 C:\Users\User\Desktop\Demo\OOO_Sport_Products\OOO_Sport_Products\obj\Debug\OOO_Sport_Products.exe
 C:\Users\User\Desktop\Demo\OOO_Sport_Products\OOO_Sport_Products\obj\Debug\OOO_Sport_Products.pdb
+C:\Users\User\Desktop\Demo\OOO_Sport_Products\OOO_Sport_Products\bin\Debug\EntityFramework.dll
+C:\Users\User\Desktop\Demo\OOO_Sport_Products\OOO_Sport_Products\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\User\Desktop\Demo\OOO_Sport_Products\OOO_Sport_Products\bin\Debug\EntityFramework.xml
+C:\Users\User\Desktop\Demo\OOO_Sport_Products\OOO_Sport_Products\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\User\Desktop\Demo\OOO_Sport_Products\OOO_Sport_Products\obj\Debug\OOO_Sport_Products.csproj.CopyComplete
