@@ -75,6 +75,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Classes\Helper.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -165,7 +166,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="View\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Model\ModelSportProducts.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -177,6 +180,19 @@
       <DependentUpon>ModelSportProducts.edmx</DependentUpon>
       <LastGenOutput>ModelSportProducts.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\B538G6.jpg" />
+    <Resource Include="Resources\D648N7.jpg" />
+    <Resource Include="Resources\D830R5.jpg" />
+    <Resource Include="Resources\E324U7.jpg" />
+    <Resource Include="Resources\F735B6.jpg" />
+    <Resource Include="Resources\F746E6.jpg" />
+    <Resource Include="Resources\F937G4.jpg" />
+    <Resource Include="Resources\G403T5.jpg" />
+    <Resource Include="Resources\G598Y6.jpg" />
+    <Resource Include="Resources\А112Т4.jpg" />
+    <Resource Include="Resources\picture.png" />
+    <Resource Include="Resources\logo.png" />
+    <Resource Include="Resources\icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
