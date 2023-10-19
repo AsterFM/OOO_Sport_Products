@@ -1,5 +1,6 @@
 ﻿using OOO_Sport_Products.Classes;
 using OOO_Sport_Products.Model;
+using OOO_Sport_Products.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,16 +28,20 @@ namespace OOO_Sport_Products
             InitializeComponent();
         }
 
+        System.Windows.Threading.DispatcherTimer timer;
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             //Подключение к БД
-            Classes.Helper.DB = new Model.DBSportProducts(); 
+            Classes.Helper.DB = new Model.DBSportProducts();
         }
 
         private void Start_Click(object sender, RoutedEventArgs e)
         {
+            Password.Text = PasswordDot.Password;
             string login = Login.Text;
-            string password = Password.Text;
+            //string password = Password.Text;
+            string password = PasswordDot.Password;
             StringBuilder sb = new StringBuilder();
             //Обработка пустоты
             if (login == "") {
@@ -56,15 +61,40 @@ namespace OOO_Sport_Products
             ////Получить первую запись таблицы
             //Model.User user = users.Where(u => u.UserLogin == login && u.UserPassword == password).FirstOrDefault();
             Classes.Helper.User = Classes.Helper.DB.Users.ToList().Where(u => u.UserLogin == login && u.UserPassword == password).FirstOrDefault();
-            string userName = Helper.User.UserFullName;
-            int userRoleId = Helper.User.UserRole;
-            string userRoleName = Helper.User.Role.RoleName;
             if (Helper.User != null)
             {
+                string userName = Helper.User.UserFullName;
+                int userRoleId = Helper.User.UserRole;
+                string userRoleName = Helper.User.Role.RoleName;
                 MessageBox.Show(userName + "\n" + userRoleId + "\n" + userRoleName);
+                GoToCatalog();
             }
-            else {
-                MessageBox.Show("Вы не зарегистрированны в системе.");
+            else if (captcha.IsVisible)
+            {
+                if (tbCaptcha.Text == captcha.CaptchaText && Helper.User != null)
+                {
+                    string userName = Helper.User.UserFullName;
+                    int userRoleId = Helper.User.UserRole;
+                    string userRoleName = Helper.User.Role.RoleName;
+                    GoToCatalog();
+                }
+                else
+                {
+                    MessageBox.Show("Вы заблокированы на 10 секунд!");
+                    Start.IsEnabled = false;
+                    captcha.CreateCaptcha(EasyCaptcha.Wpf.Captcha.LetterOption.Alphanumeric, 4);
+                    timer = new System.Windows.Threading.DispatcherTimer();
+                    timer.Tick += new EventHandler(timerTick);
+                    timer.Interval = new TimeSpan(0, 0, 10);
+                    timer.Start();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Вы не зарегистрированны в системе.\nПопробуйте ещё раз.");
+                tbCaptcha.Visibility = Visibility.Visible;
+                captcha.Visibility = Visibility.Visible;
+                captcha.CreateCaptcha(EasyCaptcha.Wpf.Captcha.LetterOption.Alphanumeric, 4);
             }
             //Доступ по навигационному свуйству в полю связвнной таблицы
             //string userRoleName = user.Role.RoleName;
@@ -75,6 +105,44 @@ namespace OOO_Sport_Products
         {
             this.Close();
 
+        }
+        //При отображении пароля
+        private void isVisiblePassword_Checked(object sender, RoutedEventArgs e)
+        {
+            Password.Visibility = Visibility.Visible;
+            PasswordDot.Visibility = Visibility.Hidden;
+            Password.Text = PasswordDot.Password;
+        }
+
+        private void isVisiblePassword_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Password.Visibility = Visibility.Hidden;
+            PasswordDot.Visibility = Visibility.Visible;
+            PasswordDot.Password = Password.Text;
+        }
+        //Начальные настройки при отображении окна
+        private void Window_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            tbCaptcha.Visibility = Visibility.Hidden;
+            captcha.Visibility = Visibility.Hidden;
+        }
+
+        private async void timerTick(object sender, EventArgs e) {
+            Start.IsEnabled = true;
+        }
+        //Переход в каталог Гостем
+        private void Gost_Click(object sender, RoutedEventArgs e)
+        {
+            GoToCatalog();
+        }
+
+
+        //Метод перехода в каталог
+        private void GoToCatalog() {
+            WindowsCatalog windowsCatalog = new WindowsCatalog();
+            this.Hide();
+            windowsCatalog.ShowDialog();
+            this.Show();
         }
     }
 }
