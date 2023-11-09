@@ -13,4 +13,11 @@ namespace OOO_Sport_Products.Classes
         //
         public static Model.User User { get; set; }
     }
+
+    public class PruductExtended 
+    {
+        public Model.Product Product { get; set; }
+
+
+    }
 }

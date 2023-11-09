@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OOO_Sport_Products.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,15 @@ namespace OOO_Sport_Products.View
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        //Загрузка окна - отображение товаров
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            List<Model.Product> listProducts = new List<Model.Product>();
+            listProducts = Helper.DB.Products.ToList();
+            listBoxProducts.ItemsSource = listProducts;  
         }
     }
 }

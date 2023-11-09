@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OOO_Sport_Products.View"
         mc:Ignorable="d"
-        Title="Работа с каталогом" Height="600" Width="800" MinHeight="600" MinWidth="800">
+        Title="Работа с каталогом" Height="600" Width="1000" MinHeight="600" MinWidth="800" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
@@ -26,10 +26,65 @@
         <!--Функциональная часть-->
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="80"/>
             </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock x:Name="tbCount" Grid.Column="0" Grid.Row="0" Text="Количесвто товаров" Style="{StaticResource Title}"/>
+            <TextBlock x:Name="tbFIO" Grid.Column="1" Grid.Row="0" Text="ФИО пользователя" Style="{StaticResource Title}"/>
+
+            <StackPanel Grid.Column="1" Grid.Row="1" Margin="20">
+                <TextBlock Style="{StaticResource Title}" Text="ФИЛЬТРЫ"/>
+                <TextBlock Style="{StaticResource Title}" Text="Сортировка по стоимости" FontSize="12"/>
+                <RadioButton x:Name="rbSortAsc" Content="По возрастанию" Style="{StaticResource Normal}" FontSize="12"/>
+                <RadioButton x:Name="rbSortDesc" Content="По убыванию" Style="{StaticResource Normal}" FontSize="12"/>
+                <TextBlock Text="*****************************" Visibility="Hidden"/>
+                <TextBlock Text="По скидке" Style="{StaticResource Normal}" FontSize="12"/>
+                <ComboBox Name="cbDiscount"/>
+                <TextBlock Text="*****************************" Visibility="Hidden"/>
+                <TextBlock Text="По категории" Style="{StaticResource Normal}" FontSize="12"/>
+                <ComboBox Name="cbCategory"/>
+                <TextBlock Text="*****************************" Visibility="Hidden"/>
+                <TextBlock Text="По названию" Style="{StaticResource Normal}" FontSize="12"/>
+                <TextBox x:Name="tbSearch" />
+
+
+            </StackPanel>
+
+            <ListBox x:Name="listBoxProducts" Grid.Row="1" BorderBrush="Black" BorderThickness="3" HorizontalContentAlignment="Stretch" Background="#f7f7f5">
+                <ListBox.ItemTemplate>
+                    <DataTemplate >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="{Binding Path=ProductPathPhoto}" Margin="0 0 10 0"/>
+                            <!--Описание товара-->
+                            <StackPanel Orientation="Vertical" Grid.Column="1">
+                                <TextBlock x:Name="tbActicle" Text="{Binding Path=ProductArticle}" Visibility="Collapsed"/>
+                                <TextBlock x:Name="tbName" Text="{Binding Path=ProductName}" Style="{StaticResource Title}" HorizontalAlignment="Left"/>
+                                <TextBlock x:Name="tbDiscr" Text="{Binding Path=ProductDescription}" HorizontalAlignment="Left" Width="400" TextWrapping="Wrap"/>
+                                <TextBlock x:Name="tbManufacturer" Text="{Binding Path=Manufacturer.ManufacturerName, StringFormat='Производитель: {0}'}"/>
+                                <TextBlock x:Name="tbCost" Text="{Binding Path=ProductCost, StringFormat='Цена без скидки: {0} руб.'}"/>
+                                <TextBlock x:Name="tbDiscount" Text="{Binding Path=ProductDiscountCurrent, StringFormat='Скидка: {0} %'}"/>
+                                <TextBlock x:Name="tbCostWithDiscount" Text="{Binding Path= ProductCostWithDisount, StringFormat='Цена со скидкой: {0} руб.'}"/>
+                            </StackPanel>
+                             <!--Количество на складе-->
+                            <StackPanel Orientation="Vertical" Grid.Column="2">
+                                <TextBlock Text="Количесвто на складе"/>
+                                <TextBlock Text="{Binding Path=ProductCountStock}"/>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </Grid>
     </Grid>
 </Window>

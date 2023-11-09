@@ -11,7 +11,9 @@ namespace OOO_Sport_Products.Model
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.IO;
+    using System.IO.Packaging;
+
     public partial class Product
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -32,7 +34,23 @@ namespace OOO_Sport_Products.Model
         public int ProductCountStock { get; set; }
         public string ProductDescription { get; set; }
         public string ProductPhoto { get; set; }
-    
+        public string ProductPathPhoto {
+            get {
+                if (!File.Exists(Environment.CurrentDirectory + "/Images/" + ProductPhoto))
+                    return "/Resources/picture.png";
+                else
+                    return Environment.CurrentDirectory + "/Images/" + ProductPhoto;
+            }
+        }
+        public double ProductCostWithDisount
+        {
+            get
+            {
+                double discountAmount = ProductCost * (ProductDiscountCurrent / 100.0);
+                return ProductCost - discountAmount;
+            }
+        }
+
         public virtual Cutegory Cutegory { get; set; }
         public virtual Manufacturer Manufacturer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
