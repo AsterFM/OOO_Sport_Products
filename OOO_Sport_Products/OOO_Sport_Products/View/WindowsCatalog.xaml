@@ -59,7 +59,7 @@
             <ListBox x:Name="listBoxProducts" Grid.Row="1" BorderBrush="Black" BorderThickness="3" HorizontalContentAlignment="Stretch" Background="#f7f7f5">
                 <ListBox.ItemTemplate>
                     <DataTemplate >
-                        <Grid>
+                        <Grid Background="{Binding Path=SolidColorBrush}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="100"/>
                                 <ColumnDefinition Width="2*"/>
@@ -68,18 +68,18 @@
                             <Image Grid.Column="0" Source="{Binding Path=ProductPathPhoto}" Margin="0 0 10 0"/>
                             <!--Описание товара-->
                             <StackPanel Orientation="Vertical" Grid.Column="1">
-                                <TextBlock x:Name="tbActicle" Text="{Binding Path=ProductArticle}" Visibility="Collapsed"/>
-                                <TextBlock x:Name="tbName" Text="{Binding Path=ProductName}" Style="{StaticResource Title}" HorizontalAlignment="Left"/>
-                                <TextBlock x:Name="tbDiscr" Text="{Binding Path=ProductDescription}" HorizontalAlignment="Left" Width="400" TextWrapping="Wrap"/>
-                                <TextBlock x:Name="tbManufacturer" Text="{Binding Path=Manufacturer.ManufacturerName, StringFormat='Производитель: {0}'}"/>
-                                <TextBlock x:Name="tbCost" Text="{Binding Path=ProductCost, StringFormat='Цена без скидки: {0} руб.'}"/>
-                                <TextBlock x:Name="tbDiscount" Text="{Binding Path=ProductDiscountCurrent, StringFormat='Скидка: {0} %'}"/>
-                                <TextBlock x:Name="tbCostWithDiscount" Text="{Binding Path= ProductCostWithDisount, StringFormat='Цена со скидкой: {0} руб.'}"/>
+                                <TextBlock x:Name="tbActicle" Text="{Binding Path=Product.ProductArticle}" Visibility="Collapsed"/>
+                                <TextBlock x:Name="tbName" Text="{Binding Path=Product.ProductName}" Style="{StaticResource Title}" HorizontalAlignment="Left"/>
+                                <TextBlock x:Name="tbDiscr" Text="{Binding Path=Product.ProductDescription}" HorizontalAlignment="Left" Width="400" TextWrapping="Wrap"/>
+                                <TextBlock x:Name="tbManufacturer" Text="{Binding Path=Product.Manufacturer.ManufacturerName, StringFormat='Производитель: {0}'}"/>
+                                <TextBlock x:Name="tbCost" Text="{Binding Path=Product.ProductCost, StringFormat='Цена без скидки: {0} руб.'}"/>
+                                <TextBlock x:Name="tbDiscount" Text="{Binding Path=Product.ProductDiscountCurrent, StringFormat='Скидка: {0} %'}"/>
+                                <TextBlock x:Name="tbCostWithDiscount" Text="{Binding Path=ProductCostWithDisount, StringFormat='Цена со скидкой: {0} руб.'}"/>
                             </StackPanel>
                              <!--Количество на складе-->
                             <StackPanel Orientation="Vertical" Grid.Column="2">
                                 <TextBlock Text="Количесвто на складе"/>
-                                <TextBlock Text="{Binding Path=ProductCountStock}"/>
+                                <TextBlock Text="{Binding Path=Product.ProductCountStock}"/>
                             </StackPanel>
                         </Grid>
                     </DataTemplate>

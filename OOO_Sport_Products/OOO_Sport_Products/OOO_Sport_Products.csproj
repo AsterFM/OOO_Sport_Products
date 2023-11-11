@@ -88,6 +88,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\ProductExtended.cs" />
     <Compile Include="View\WindowsCatalog.xaml.cs">
       <DependentUpon>WindowsCatalog.xaml</DependentUpon>
     </Compile>
