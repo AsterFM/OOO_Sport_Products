@@ -41,17 +41,17 @@
             <StackPanel Grid.Column="1" Grid.Row="1" Margin="20">
                 <TextBlock Style="{StaticResource Title}" Text="ФИЛЬТРЫ"/>
                 <TextBlock Style="{StaticResource Title}" Text="Сортировка по стоимости" FontSize="12"/>
-                <RadioButton x:Name="rbSortAsc" Content="По возрастанию" Style="{StaticResource Normal}" FontSize="12"/>
-                <RadioButton x:Name="rbSortDesc" Content="По убыванию" Style="{StaticResource Normal}" FontSize="12"/>
+                <RadioButton x:Name="rbSortAsc" Content="По возрастанию" Style="{StaticResource Normal}" FontSize="12" Checked="rbSortAsc_Checked"/>
+                <RadioButton x:Name="rbSortDesc" Content="По убыванию" Style="{StaticResource Normal}" FontSize="12" Checked="rbSortDesc_Checked"/>
                 <TextBlock Text="*****************************" Visibility="Hidden"/>
                 <TextBlock Text="По скидке" Style="{StaticResource Normal}" FontSize="12"/>
-                <ComboBox Name="cbDiscount"/>
+                <ComboBox Name="cbDiscount" SelectionChanged="cbDiscount_SelectionChanged"/>
                 <TextBlock Text="*****************************" Visibility="Hidden"/>
                 <TextBlock Text="По категории" Style="{StaticResource Normal}" FontSize="12"/>
-                <ComboBox Name="cbCategory"/>
+                <ComboBox Name="cbCategory" SelectionChanged="cbCategory_SelectionChanged"/>
                 <TextBlock Text="*****************************" Visibility="Hidden"/>
                 <TextBlock Text="По названию" Style="{StaticResource Normal}" FontSize="12"/>
-                <TextBox x:Name="tbSearch" />
+                <TextBox x:Name="tbSearch" TextChanged="tbSearch_TextChanged" />
 
 
             </StackPanel>
