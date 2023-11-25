@@ -133,6 +133,7 @@ namespace OOO_Sport_Products
         //Переход в каталог Гостем
         private void Gost_Click(object sender, RoutedEventArgs e)
         {
+            Helper.User = null;
             GoToCatalog();
         }
 

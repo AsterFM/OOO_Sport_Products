@@ -1,0 +1,83 @@
+﻿<Window x:Class="OOO_Sport_Products.View.WindowOrder"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OOO_Sport_Products.View"
+        mc:Ignorable="d"
+        Title="Оформление заказа" Height="600" Width="1000" MinHeight="600" MinWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Background="#FFFFCC9A">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Source="\Resources\logo.png" Width="80" Height="80"/>
+                <TextBlock Grid.Column="1" Text="Оформление заказа" Style="{StaticResource Title}"/>
+                <Button Grid.Column="2" x:Name="Exit" Content="Назад"  Click="Exit_Click"  Margin="10,15" Background="#FFCC6600" Style="{StaticResource Title}" Width="200" Height="50"/>
+            </Grid>
+
+            <!--Функциональная часть-->
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="80"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="1.5*"/>
+                </Grid.ColumnDefinitions>
+                
+                
+
+                <TextBlock x:Name="tbFIO" Grid.Column="1" Grid.Row="0" Text="ФИО пользователя" Style="{StaticResource Title}"/>
+
+            <StackPanel Grid.Column="1" Grid.Row="1" Margin="20">
+                <TextBlock Style="{StaticResource Title}" Text="Инфо о заказе"/>
+                <TextBlock x:Name="tbSumTotal"/>
+                <TextBlock x:Name="tbSumDiscount"/>
+                <TextBlock x:Name="tbSumTotalWithDiscount"/>
+                <TextBlock Text="Статус заказа: новый"/>
+                <TextBlock Text="Пункт выдачи"/>
+                <ComboBox x:Name="cbPoint"/>
+            </StackPanel>
+
+            <ListBox x:Name="listBoxOrders" Grid.Row="1" BorderBrush="Black" BorderThickness="3" HorizontalContentAlignment="Stretch" Background="#f7f7f5">
+                <ListBox.ItemTemplate>
+                        <DataTemplate >
+                            <Grid Background="{Binding Path=SolidColorBrush}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Source="{Binding Path=ProductExtended.ProductPathPhoto}" Margin="0 0 10 0"/>
+                                <!--Описание товара-->
+                                <StackPanel Orientation="Vertical" Grid.Column="1">
+                                <TextBlock x:Name="tbActicle" Text="{Binding Path=ProductExtended.Product.ProductArticle}" Visibility="Collapsed"/>
+                                <TextBlock x:Name="tbName" Text="{Binding Path=ProductExtended.Product.ProductName}" Style="{StaticResource Title}" HorizontalAlignment="Left"/>
+                                <TextBlock x:Name="tbDiscr" Text="{Binding Path=ProductExtended.Product.ProductDescription}" HorizontalAlignment="Left" Width="400" TextWrapping="Wrap"/>
+                                <TextBlock x:Name="tbManufacturer" Text="{Binding Path=ProductExtended.Product.Manufacturer.ManufacturerName, StringFormat='Производитель: {0}'}"/>
+                                <TextBlock x:Name="tbCost" Text="{Binding Path=ProductExtended.Product.ProductCost, StringFormat='Цена без скидки: {0} руб.'}"/>
+                                <TextBlock x:Name="tbDiscount" Text="{Binding Path=ProductExtended.Product.ProductDiscountCurrent, StringFormat='Скидка: {0} %'}"/>
+                                <TextBlock x:Name="tbCostWithDiscount" Text="{Binding Path=ProductExtended.ProductCostWithDisount, StringFormat='Цена со скидкой: {0} руб.'}"/>
+                                </StackPanel>
+                                <!--Количество на складе-->
+                            <StackPanel Orientation="Vertical" Grid.Column="2">
+                                <TextBox x:Name="tbCountProductInOrder" Text="{Binding CountProductInOrder}"/>
+                                <Button x:Name="butDeleteProductInOrder" Content="Удалить товар" Click="butDeleteProductInOrder_Click" Tag="{Binding Path=ProductExtended.Product.ProductArticle}"/>
+                            </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </Grid>
+</Window>

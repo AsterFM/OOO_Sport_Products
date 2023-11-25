@@ -27,3 +27,5 @@ C:\Users\User\Desktop\Demo\OOO_Sport_Products\OOO_Sport_Products\bin\Debug\ru\En
 C:\Users\User\Desktop\Demo\OOO_Sport_Products\OOO_Sport_Products\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
 C:\Users\User\Desktop\Demo\OOO_Sport_Products\OOO_Sport_Products\obj\Debug\View\WindowsCatalog.g.cs
 C:\Users\User\Desktop\Demo\OOO_Sport_Products\OOO_Sport_Products\obj\Debug\View\WindowsCatalog.baml
+C:\Users\User\Desktop\Demo\OOO_Sport_Products\OOO_Sport_Products\obj\Debug\View\WindowOrder.g.cs
+C:\Users\User\Desktop\Demo\OOO_Sport_Products\OOO_Sport_Products\obj\Debug\View\WindowOrder.baml

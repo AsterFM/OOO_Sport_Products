@@ -11,6 +11,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -23,6 +24,8 @@ namespace OOO_Sport_Products.View
     /// </summary>
     public partial class WindowsCatalog : Window
     {
+        //Товары в заказе
+        List<ProductInOrder> order = new List<ProductInOrder>();
         public WindowsCatalog()
         {
             InitializeComponent();
@@ -37,6 +40,12 @@ namespace OOO_Sport_Products.View
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            butOrder.Visibility = Visibility.Hidden;
+            cmAddInOrder.Visibility = Visibility.Hidden;
+            if (Helper.User == null || Helper.User.UserRole == 1) 
+            {
+                cmAddInOrder.Visibility = Visibility.Visible;
+            }
             //Заполнены скидки
             cbDiscount.Items.Clear();
             cbDiscount.Items.Add("Все диапозоны");
@@ -157,6 +166,35 @@ namespace OOO_Sport_Products.View
         private void tbSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             ShowProducts();
+        }
+        //Добавление товара в заказ
+        private void miAddInOrder_Click(object sender, RoutedEventArgs e)
+        {
+            butOrder.Visibility = Visibility.Visible;
+            ProductExtended productExtendedSelect = listBoxProducts.SelectedItem as ProductExtended;
+            //Поиск выбранного товара в заказе
+            ProductInOrder productInOrderFind = order.Find(x => x.ProductExtended.Product.ProductArticle == productExtendedSelect.Product.ProductArticle);
+            //Нашли
+            if (productInOrderFind != null)
+            {
+                productInOrderFind.CountProductInOrder++;
+            }
+            else  //Нет - добавялем новую поззицию в заказ
+            {
+                ProductInOrder productNew = new ProductInOrder(productExtendedSelect);
+                order.Add(productNew);
+            }
+            //ProductInOrder productInOrder = new ProductInOrder(productExtendedSelect);
+            //MessageBox.Show(productExtended.Product.ProductArticle);
+        }
+
+        private void butOrder_Click(object sender, RoutedEventArgs e)
+        {
+            //Создаём окно заказа с передачей ему списка заказов
+            WindowOrder windowOrder = new WindowOrder(order);
+            this.Hide();
+            windowOrder.ShowDialog();
+            this.ShowDialog();
         }
     }
 }
