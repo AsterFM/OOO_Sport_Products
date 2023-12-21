@@ -71,5 +71,47 @@ namespace OOO_Sport_Products.View
             listOrder.Remove(selectProduct);
             ShowInfo();
         }
+        //Сохранение заказа в БД
+        private void btnMakeOrder_Click(object sender, RoutedEventArgs e)
+        {
+            if (listOrder.Count <= 0)
+            {
+                MessageBox.Show("Корзина пуста!");
+                return;
+            }
+            else 
+            {
+                //Создаём оьъект заказ
+                Model.Order Order = new Model.Order();
+                //Запполняем поля
+                Order.OrderDate = DateTime.Now;
+                Order.OrderDeliveryDate = Order.OrderDate.AddDays(6);
+                Order.OrderFullName = tbFullName.Text;
+                Order.OrderCode = new Random().Next(100, 1000);
+                Order.OrderStatus = 1;
+                Order.OrderPoint = (int)cbPoint.SelectedValue;
+                Helper.DB.Orders.Add(Order);
+                try
+                {
+                    Helper.DB.SaveChanges();
+                    foreach (Classes.ProductInOrder item in listOrder) 
+                    {
+                        Model.OrderProduct orderProduct = new Model.OrderProduct();
+                        orderProduct.OrderId = Order.OrederId;
+                        orderProduct.ProductArticle = item.ProductExtended.Product.ProductArticle;
+                        orderProduct.ProductCountInOrder = item.CountProductInOrder;
+                        Helper.DB.OrderProducts.Add(orderProduct);
+                        Helper.DB.SaveChanges();
+                    }
+                    MessageBox.Show("Заказ оформлен");
+                    listOrder.Clear();
+                    this.Close();
+                }
+                catch 
+                {
+                    MessageBox.Show("Произошёл сбой при сохранении");
+                }
+            }
+        }
     }
 }

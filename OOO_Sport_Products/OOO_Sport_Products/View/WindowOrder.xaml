@@ -47,6 +47,9 @@
                 <TextBlock Text="Статус заказа: новый"/>
                 <TextBlock Text="Пункт выдачи"/>
                 <ComboBox x:Name="cbPoint"/>
+                <TextBlock Text="ФИО получаетля"/>
+                <TextBox x:Name="tbFullName"/>
+                <Button x:Name="btnMakeOrder" Content="Оформить заказ" Margin="10 20 10 20" Click="btnMakeOrder_Click"/>
             </StackPanel>
 
             <ListBox x:Name="listBoxOrders" Grid.Row="1" BorderBrush="Black" BorderThickness="3" HorizontalContentAlignment="Stretch" Background="#f7f7f5">

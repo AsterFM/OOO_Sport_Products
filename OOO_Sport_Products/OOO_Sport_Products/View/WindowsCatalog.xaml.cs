@@ -42,9 +42,17 @@ namespace OOO_Sport_Products.View
         {
             butOrder.Visibility = Visibility.Hidden;
             cmAddInOrder.Visibility = Visibility.Hidden;
-            if (Helper.User == null || Helper.User.UserRole == 1) 
+            btnWorkOrder.Visibility = Visibility.Hidden;
+            btnAddProduct.Visibility = Visibility.Hidden;
+            if (Helper.User == null || Helper.User.UserRole == 1)
             {
                 cmAddInOrder.Visibility = Visibility.Visible;
+            }
+            else 
+            {
+                btnWorkOrder.Visibility= Visibility.Visible;
+                if(Helper.User.UserRole == 3)
+                    btnAddProduct.Visibility = Visibility.Visible;
             }
             //Заполнены скидки
             cbDiscount.Items.Clear();
@@ -194,6 +202,14 @@ namespace OOO_Sport_Products.View
             WindowOrder windowOrder = new WindowOrder(order);
             this.Hide();
             windowOrder.ShowDialog();
+            this.ShowDialog();
+        }
+        //Переход к окну работа с заказами
+        private void btnWorkOrder_Click(object sender, RoutedEventArgs e)
+        {
+            WindowWorkOrder windowWorkOrder = new WindowWorkOrder();
+            this.Hide();
+            windowWorkOrder.ShowDialog();
             this.ShowDialog();
         }
     }

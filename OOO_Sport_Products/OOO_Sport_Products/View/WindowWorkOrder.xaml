@@ -1,0 +1,69 @@
+﻿<Window x:Class="OOO_Sport_Products.View.WindowWorkOrder"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OOO_Sport_Products.View"
+        mc:Ignorable="d"
+        Title="Работа с заказами" Height="500" Width="1000" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="#FFFFCC9A">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0" Source="\Resources\logo.png" Width="80" Height="80"/>
+            <TextBlock Grid.Column="1" Text="Работа с заказами" Style="{StaticResource Title}"/>
+            <Button Grid.Column="2" x:Name="Exit" Content="Назад"  Click="Exit_Click"  Margin="10,15" Background="#FFCC6600" Style="{StaticResource Title}" Width="200" Height="50"/>
+        </Grid>
+
+        <!--Функциональная часть-->
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <!--Список всех заказов-->
+            <ListView x:Name="lvOrders" Grid.Row="1" SelectionChanged="lvOrders_SelectionChanged">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Номер заказа" DisplayMemberBinding="{Binding Order.OrederId}"/>
+                        <GridViewColumn Header="Дата заказа" DisplayMemberBinding="{Binding Order.OrderDate}"/>
+                        <GridViewColumn Header="Общая сумма заказа" DisplayMemberBinding="{Binding SumOrder}"/>
+                        <GridViewColumn Header="Сумма заказа со скидкой" DisplayMemberBinding="{Binding SumOrderWithDiscount}"/>
+                        <GridViewColumn Header="Общий размер скидки заказа в %" DisplayMemberBinding="{Binding SumDiscountPercent, StringFormat={}{0:F2}}"/>
+                        <GridViewColumn Header="ФИО получателя" DisplayMemberBinding="{Binding Order.OrderFullName}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <!--Структура выранного заказа-->
+            <ListView x:Name="lvSelectOrder" Grid.Row="2">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Артикул" DisplayMemberBinding="{Binding ProductArticle}"/>
+                        <GridViewColumn Header="Количество" DisplayMemberBinding="{Binding ProductCountInOrder}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="80"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="1.5*"/>
+            </Grid.ColumnDefinitions>
+        </Grid>
+    </Grid>
+</Window>

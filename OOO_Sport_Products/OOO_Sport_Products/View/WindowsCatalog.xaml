@@ -93,6 +93,11 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
+            <!--Кнопки для менеджера и админа-->
+            <StackPanel Orientation="Horizontal" Grid.Row="2">
+                <Button x:Name="btnWorkOrder" Content="Работа с заказами" Margin="20 10 10 0" Click="btnWorkOrder_Click"/>
+                <Button x:Name="btnAddProduct" Content="Добавление товара" Margin="20 10 10 0"/>
+            </StackPanel>
         </Grid>
     </Grid>
 </Window>
